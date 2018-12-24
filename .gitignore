@@ -1,0 +1,48 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+**/.rebel.xml.bak
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+###logs###
+logs
+apidoc.log
+
+#jrebel 热加载插件配置
+**/rebel.xml
+
+#编译后的文件
+out
+target
+
+*/web.xml
+.rebel-remote.xml.bak
+
+# 文件上传位置
+upload/**
+发布/**
+page/**
+
+# angular
+cloud-apidoc/fornt/node_modules
+cloud-apidoc/fornt/out-tsc
