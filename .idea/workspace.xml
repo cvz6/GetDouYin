@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ee625f5-83cc-4e81-b1ea-4f37aba280b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/抖音视频列表接口分析.json" beforeDir="false" afterPath="$PROJECT_DIR$/doc/抖音视频列表接口分析.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/liupeng328/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/liupeng328/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/liupeng328/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/liupeng328/Main.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,10 +63,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/liupeng328/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+            <state relative-caret-position="345">
+              <caret line="144" column="106" selection-start-line="144" selection-start-column="106" selection-end-line="144" selection-end-column="106" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/cn/hutool/hutool-all/4.3.1/hutool-all-4.3.1-sources.jar!/cn/hutool/http/HttpUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="364" column="23" selection-start-line="364" selection-start-column="23" selection-end-line="364" selection-end-column="23" />
+              <folding>
+                <element signature="e#9153#9154#0" expanded="true" />
+                <element signature="e#9205#9206#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,7 +119,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/liupeng328/Const.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="142" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="142" />
+              <caret line="9" column="142" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="142" />
             </state>
           </provider>
         </entry>
@@ -246,6 +258,11 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="liupeng328" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="GetDouYin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GetDouYin" type="462c0819:PsiDirectoryNode" />
+              <item name="下载到的视频" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -255,7 +272,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545661647346" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545663241941" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -308,18 +325,25 @@
       <updated>1545639967250</updated>
       <workItem from="1545639969135" duration="1539000" />
       <workItem from="1545641531961" duration="3352000" />
-      <workItem from="1545654510896" duration="5897000" />
+      <workItem from="1545654510896" duration="7474000" />
     </task>
+    <task id="LOCAL-00001" summary="下载基本信息">
+      <created>1545661828385</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1545661828385</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10788000" />
+    <option name="totallyTimeSpent" value="12365000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="820" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49787235" weight="0.2546495" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49787235" visible="true" weight="0.2546495" />
       <window_info id="Structure" order="1" sideWeight="0.50212765" side_tool="true" weight="0.2546495" />
       <window_info id="Designer" order="2" />
       <window_info id="JRebel" order="3" side_tool="true" />
@@ -328,12 +352,12 @@
       <window_info id="UI Designer" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info id="Learn" order="8" />
-      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Messages" weight="0.32907802" />
       <window_info anchor="bottom" id="CheckStyle" />
       <window_info anchor="bottom" id="Statistic" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32893288" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.9574468" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -361,8 +385,8 @@
       <window_info anchor="right" id="Theme Preview" order="9" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49787235" weight="0.2546495" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.50212765" side_tool="true" visible="true" weight="0.2546495" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49787235" visible="true" weight="0.2546495" />
+      <window_info id="Structure" order="1" sideWeight="0.50212765" side_tool="true" weight="0.2546495" />
       <window_info id="Designer" order="2" />
       <window_info id="JRebel" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -372,11 +396,11 @@
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="CheckStyle" order="0" />
       <window_info anchor="bottom" id="Statistic" order="1" />
-      <window_info anchor="bottom" id="Messages" order="2" />
+      <window_info anchor="bottom" id="Messages" order="2" weight="0.32907802" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
-      <window_info anchor="bottom" id="Run" order="5" weight="0.32893288" />
-      <window_info anchor="bottom" id="Debug" order="6" visible="true" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.32765958" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" />
@@ -406,17 +430,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/github/liupeng328/Main.java</url>
-          <line>16</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="下载基本信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="下载基本信息" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$MAVEN_REPOSITORY$/cn/hutool/hutool-all/4.3.1/hutool-all-4.3.1.jar!/cn/hutool/http/HttpRequest.class" />
@@ -460,7 +476,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/liupeng328/Const.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="142" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="142" />
+          <caret line="9" column="142" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="142" />
         </state>
       </provider>
     </entry>
@@ -527,10 +543,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/cn/hutool/hutool-all/4.3.1/hutool-all-4.3.1-sources.jar!/cn/hutool/http/HttpUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="364" column="23" selection-start-line="364" selection-start-column="23" selection-end-line="364" selection-end-column="23" />
+          <folding>
+            <element signature="e#9153#9154#0" expanded="true" />
+            <element signature="e#9205#9206#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/liupeng328/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+        <state relative-caret-position="345">
+          <caret line="144" column="106" selection-start-line="144" selection-start-column="106" selection-end-line="144" selection-end-column="106" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

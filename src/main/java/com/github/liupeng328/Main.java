@@ -1,16 +1,21 @@
 package com.github.liupeng328;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.db.Entity;
 import cn.hutool.http.HttpRequest;
-import cn.hutool.http.useragent.UserAgentUtil;
+import cn.hutool.http.HttpResponse;
+import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 
-import java.util.concurrent.ExecutorService;
+import java.io.File;
 
 public class Main implements Runnable{
+
+    private static String absolutePath;//视频存放路径
+
     @Override
     public void run() {
         while (true) {
@@ -27,6 +32,9 @@ public class Main implements Runnable{
         System.out.println("******************************************************************");
         System.err.println("欢迎使用抖音视频下载工具，如有问题请加QQ群交流：317896269");
         System.err.println("开始抓取数据……");
+        absolutePath = FileUtil.getAbsolutePath(new File(""));
+        absolutePath = absolutePath+File.separator+"下载到的视频"+File.separator;
+        System.err.println("视频存放路径为： "+absolutePath);
         //多线程下载
        ThreadUtil.execute(new Main());
        ThreadUtil.execute(new Main());
@@ -62,6 +70,10 @@ public class Main implements Runnable{
                                             authorJson.getJSONObject("avatar_larger").getJSONArray("url_list").getStr(0))
                             .set("birthday",authorJson.getStr("birthday"));//生日
                     System.out.println("作者信息： "+JSONUtil.formatJsonStr(JSONUtil.toJsonStr(author)));
+                    //考虑到抖音视频非常多，单机不可能爬取完全部，所以该爬虫天然作为分布式，每一个客户端启动，都是整个爬虫的一部分
+                    //每个爬虫互联帮助，一起下载，加快下载速度
+                    //信息分布式共享
+                    //todo
                 }
 
 
@@ -88,6 +100,10 @@ public class Main implements Runnable{
                                     musicJson.getJSONObject("cover_hd").getJSONArray("url_list")==null?null:
                                             musicJson.getJSONObject("cover_hd").getJSONArray("url_list").getStr(0));
                     System.out.println("背景音乐信息： "+JSONUtil.formatJsonStr(JSONUtil.toJsonStr(music)));
+                    //考虑到抖音视频非常多，单机不可能爬取完全部，所以该爬虫天然作为分布式，每一个客户端启动，都是整个爬虫的一部分
+                    //每个爬虫互联帮助，一起下载，加快下载速度
+                    //信息分布式共享
+                    //todo
 
                 }
 
@@ -117,6 +133,20 @@ public class Main implements Runnable{
                                     videoJson.getJSONObject("origin_cover").getJSONArray("url_list")==null?null:
                                             videoJson.getJSONObject("origin_cover").getJSONArray("url_list").getStr(0));;
                     System.out.println("视频信息： "+JSONUtil.formatJsonStr(JSONUtil.toJsonStr(video)));
+                    //考虑到抖音视频非常多，单机不可能爬取完全部，所以该爬虫天然作为分布式，每一个客户端启动，都是整个爬虫的一部分
+                    //每个爬虫互联帮助，一起下载，加快下载速度
+                    //信息分布式共享
+                    //todo
+                    //下载视频
+                    HttpResponse response = HttpRequest.get(video.getStr("play_addr_url_list")).execute();
+                    if(response.getStatus()==302){
+                        String location = response.header("location");
+                        HttpUtil.downloadFile(location,absolutePath+video.getStr("dynamic_cover_uri")+".mp4");
+                        System.err.println(absolutePath+video.getStr("dynamic_cover_uri")+".mp4"+ "下载成功！！！");
+                    }else {
+                        HttpUtil.downloadFile(video.getStr("play_addr_url_list"),absolutePath+video.getStr("dynamic_cover_uri")+".mp4");
+                    }
+
                 }
 
             }
