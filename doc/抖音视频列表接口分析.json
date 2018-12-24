@@ -368,8 +368,7 @@
                                 "http://v1-dy.ixigua.com/2970b4cf116788f3323d2b41fee02c02/5c20af21/video/m/22027cdfb429bc44fedbb4e0978f6b526f4116123cba0000cd2026b18fc2/?rc=anE6ZjU3bDs2ajMzZmkzM0ApQHRAb0c0Ozs0OjgzNDU3Ojc1OzNAKXUpQGczdylAZmh1eXExZnNoaGRmOzRAbGVxLi9zc19kXy0tXi0vc3MtbyNvIzU0MzY0LS4tLS0tLi8uLi9pOmItbyM6YC1vI3BiZnJoXitqdDojLy5e",
                                 "https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200fac0000bgg3b8viv4221ct7hnog&line=0&ratio=720p&media_type=4&vr_type=0&test_cdn=None&improve_bitrate=0",
                                 "https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200fac0000bgg3b8viv4221ct7hnog&line=1&ratio=720p&media_type=4&vr_type=0&test_cdn=None&improve_bitrate=0",
-                                "https://api.amemv.com/aweme/v1/play/?video_id=v0200fac0000bgg3b8viv4221ct7hnog&line=0&ratio=720p&media_type=4&vr_type=0&test_cdn=None&improve_bitrate=0",
-                                "https://api.amemv.com/aweme/v1/play/?video_id=v0200fac0000bgg3b8viv4221ct7hnog&line=1&ratio=720p&media_type=4&vr_type=0&test_cdn=None&improve_bitrate=0"
+                                "nbcdtkoukgvhhttps://api.amemv.com/aweme/v1/play/?video_id=v0200fac0000bgg3b8viv4221ct7hnog&line=1&ratio=720p&media_type=4&vr_type=0&test_cdn=None&improve_bitrate=0"
                             ],
                             "width": 720,
                             "height": 720,
