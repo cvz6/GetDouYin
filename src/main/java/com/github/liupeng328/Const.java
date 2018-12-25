@@ -10,4 +10,5 @@ public interface Const {
     String userAgent= "com.ss.android.ugc.aweme/380 (Linux; U; Android 8.0.0; zh_CN_#Hans; MHA-AL00; Build/HUAWEIMHA-AL00; Cronet/58.0.2991.0)";
     //数据共享url 共享爬到的数据
     String shareUrl = "http://123.56.146.98:9999/insert/";
+//    String shareUrl = "http://localhost:9999/insert/";
 }
