@@ -14,3 +14,5 @@ Java爬取抖音视频，爬取抖音视频，Java爬虫
 - 如果你懂Java，本机用jdk环境，运行`java -jar GetDouYin-1.0.jar`即可
 - 如果你什么都不懂，我打包了一个windows版的 ，解压 douyin.zip 双击start.bat即可运行
 - mac和linux版本暂时不弄了，需要的可以qq群下载 QQ群：317896269 代码狗
+
+# QQ 群 317896269 [点击链接加入群聊【抖音视频爬取】](https://jq.qq.com/?_wv=1027&k=54F9yMk)
