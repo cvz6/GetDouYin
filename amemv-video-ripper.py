@@ -24,7 +24,7 @@ TIMEOUT = 10
 RETRY = 5
 
 # Numbers of downloading threads concurrently
-THREADS = 1
+THREADS = 10
 
 # 防止重复下载
 file = open('videoids.json', 'r')
