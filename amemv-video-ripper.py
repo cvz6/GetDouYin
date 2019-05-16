@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
-import os
-import sys
+import codecs
+import copy
 import getopt
+import hashlib
+import json
+import os
+import re
+import sys
+import threading
+import time
 import urllib.parse
 import urllib.request
-import copy
-import hashlib
-import codecs
-import requests
-import re
-from six.moves import queue as Queue
 from threading import Thread
-import json
-import time
+from urllib import parse
+
+import requests
+from six.moves import queue as Queue
 
 # Setting timeout
 TIMEOUT = 10
@@ -21,7 +24,14 @@ TIMEOUT = 10
 RETRY = 5
 
 # Numbers of downloading threads concurrently
-THREADS = 10
+THREADS = 1
+
+# 防止重复下载
+file = open('videoids.json', 'r')
+js = file.read()
+VIDEOID_DICT = json.loads(js)
+# print(VIDEOID)
+file.close()
 
 HEADERS = {
     'accept-encoding': 'gzip, deflate, br',
@@ -53,6 +63,7 @@ def getRemoteFileSize(url, proxy=None):
 
 
 def download(medium_type, uri, medium_url, target_folder):
+    global VIDEO_ID
     headers = copy.copy(HEADERS)
     file_name = uri
     if medium_type == 'video':
@@ -66,14 +77,14 @@ def download(medium_type, uri, medium_url, target_folder):
 
     file_path = os.path.join(target_folder, file_name)
     if os.path.isfile(file_path):
-        # remoteSize = getRemoteFileSize(medium_url)
-        localSize = os.path.getsize(file_path)
-        # if remoteSize == localSize:
-        # chazhi= abs(remoteSize - localSize);
-        # if chazhi<1024*1024: #差值小于1M
-        if localSize>1024*1024: #本地文件大于于1M 认为下载过了
+        # 解析medium_url中的 video_id
+        parses = parse.parse_qs(parse.urlparse(medium_url).query)
+        VIDEO_ID = parses["video_id"][0]
+        if VIDEO_ID in VIDEOID_DICT:
+            print("重复爬取，放弃"+VIDEO_ID)
             return
     print("Downloading %s from %s.\n" % (file_name, medium_url))
+    VIDEOID_DICT[VIDEO_ID] = 1  # 记录已经下载的视频
     retry_times = 0
     while retry_times < RETRY:
         try:
@@ -95,7 +106,7 @@ def download(medium_type, uri, medium_url, target_folder):
         except OSError:
             pass
         print("Failed to retrieve %s from %s.\n" % (uri, medium_url))
-    time.sleep(1)
+        time.sleep(1)
 
 
 def get_real_address(url):
@@ -492,6 +503,15 @@ def parse_sites(fileName):
             numbers.append(site)
     return numbers
 
+# 定时记录已经下载的文件
+def saveVideoids():
+    while True:
+        print("定时记录已经下载的视频，防止重复爬取")
+        js = json.dumps(VIDEOID_DICT)
+        fileObject = open('videoids.json', 'w')
+        fileObject.write(js)
+        fileObject.close()
+        time.sleep(10)
 
 download_favorite = False
 
@@ -525,5 +545,7 @@ if __name__ == "__main__":
             if o in ("--favorite"):
                 download_favorite = True
                 break
+
+    threading.Timer(10, saveVideoids).start()
 
     CrawlerScheduler(content)
