@@ -5,5 +5,5 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh
 RUN source /root/.bashrc
 RUN nvm install v10.15.0
 RUN nvm alias default v10.15.0
-RUN mkdir ~/code && cd ~/code && git clone https://github.com/loadchange/amemv-crawler.git
+RUN mkdir ~/code && cd ~/code && git clone https://github.com/liupeng328/GetDouYin.git
 RUN cd amemv-crawler && pip3 install -r requirements.txt
