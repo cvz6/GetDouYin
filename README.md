@@ -1,6 +1,6 @@
 原Java版废弃，改为python脚本实现
 ===============
-代码是摘抄自github某位大佬，并稍作修改。
+代码是摘抄自github[某位大佬](https://github.com/loadchange/amemv-crawler)，并稍作修改。
 # 注意事项：
 
 - 需要nodejs和python3环境，自行安装nodejs和python3
@@ -17,7 +17,7 @@
 #### 程序猿和程序媛见这里
 
 
-配置好你的Python、node环境,然后`pip install requests `.
+配置好你的Python、node环境,然后`pip install requirements.txt `.
 
 或者
 
