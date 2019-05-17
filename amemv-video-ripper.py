@@ -12,7 +12,6 @@ import time
 import urllib.parse
 import urllib.request
 from threading import Thread
-from urllib import parse
 
 import requests
 from six.moves import queue as Queue
@@ -26,12 +25,12 @@ RETRY = 5
 # Numbers of downloading threads concurrently
 THREADS = 10
 
-# 防止重复下载
-file = open('videoids.json', 'r')
-js = file.read()
-VIDEOID_DICT = json.loads(js)
-# print(VIDEOID)
-file.close()
+# 防止重复下载 记录视频id到json文件版
+# file = open('videoids.json', 'r')
+# js = file.read()
+# VIDEOID_DICT = json.loads(js)
+# # print(VIDEOID)
+# file.close()
 
 HEADERS = {
     'accept-encoding': 'gzip, deflate, br',
@@ -63,7 +62,7 @@ def getRemoteFileSize(url, proxy=None):
 
 
 def download(medium_type, uri, medium_url, target_folder):
-    global VIDEO_ID
+    # global VIDEO_ID
     headers = copy.copy(HEADERS)
     file_name = uri
     if medium_type == 'video':
@@ -77,14 +76,17 @@ def download(medium_type, uri, medium_url, target_folder):
 
     file_path = os.path.join(target_folder, file_name)
     if os.path.isfile(file_path):
+        print(file_name+" 已经爬取过了，文件保存在 "+file_path+" 放弃爬取")
+        return
         # 解析medium_url中的 video_id
-        parses = parse.parse_qs(parse.urlparse(medium_url).query)
-        VIDEO_ID = parses["video_id"][0]
-        if VIDEO_ID in VIDEOID_DICT:
-            print("重复爬取，放弃"+VIDEO_ID)
-            return
+        # parses = parse.parse_qs(parse.urlparse(medium_url).query)
+        # VIDEO_ID = parses["video_id"][0]
+        # if VIDEO_ID in VIDEOID_DICT:
+        #     print("重复爬取，放弃"+VIDEO_ID)
+        #     return
+
     print("Downloading %s from %s.\n" % (file_name, medium_url))
-    VIDEOID_DICT[VIDEO_ID] = 1  # 记录已经下载的视频
+    # VIDEOID_DICT[VIDEO_ID] = 1  # 记录已经下载的视频
     retry_times = 0
     while retry_times < RETRY:
         try:
@@ -503,15 +505,17 @@ def parse_sites(fileName):
             numbers.append(site)
     return numbers
 
-# 定时记录已经下载的文件
-def saveVideoids():
-    while True:
-        print("定时记录已经下载的视频，防止重复爬取")
-        js = json.dumps(VIDEOID_DICT)
-        fileObject = open('videoids.json', 'w')
-        fileObject.write(js)
-        fileObject.close()
-        time.sleep(10)
+
+# # 定时记录已经下载的文件
+# def saveVideoids():
+#     while True:
+#         print("定时记录已经下载的视频，防止重复爬取")
+#         js = json.dumps(VIDEOID_DICT)
+#         fileObject = open('videoids.json', 'w')
+#         fileObject.write(js)
+#         fileObject.close()
+#         time.sleep(10)
+
 
 download_favorite = False
 
@@ -546,6 +550,6 @@ if __name__ == "__main__":
                 download_favorite = True
                 break
 
-    threading.Timer(10, saveVideoids).start()
+    # threading.Timer(10, saveVideoids).start()
 
     CrawlerScheduler(content)
