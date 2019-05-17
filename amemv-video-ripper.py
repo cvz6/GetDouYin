@@ -7,7 +7,6 @@ import json
 import os
 import re
 import sys
-import threading
 import time
 import urllib.parse
 import urllib.request
