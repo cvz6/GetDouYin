@@ -359,7 +359,7 @@ class CrawlerScheduler(object):
                 max_cursor = contentJson.get('max_cursor')
             else:
                 break
-        if download_favorite:
+        if True:
             favorite_folder = target_folder + '/favorite'
             video_count = self.__download_favorite_media(
                 user_id, dytk, hostname, signature, favorite_folder, video_count)
