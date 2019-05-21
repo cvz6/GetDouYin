@@ -516,7 +516,7 @@ def parse_sites(fileName):
 #         time.sleep(10)
 
 
-download_favorite = False
+download_favorite = True
 
 if __name__ == "__main__":
     content, opts, args = None, None, []
