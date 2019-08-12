@@ -21,14 +21,7 @@ TIMEOUT = 10
 RETRY = 5
 
 # Numbers of downloading threads concurrently
-THREADS = 10
-
-# 防止重复下载 记录视频id到json文件版
-# file = open('videoids.json', 'r')
-# js = file.read()
-# VIDEOID_DICT = json.loads(js)
-# # print(VIDEOID)
-# file.close()
+THREADS = 2
 
 HEADERS = {
     'accept-encoding': 'gzip, deflate, br',
@@ -39,28 +32,8 @@ HEADERS = {
     'user-agent': "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
 }
 
-
-def getRemoteFileSize(url, proxy=None):
-    '''
-    通过content-length头获取远程文件大小
-    '''
-    try:
-        request = urllib.request.Request(url)
-        request.get_method = lambda: 'HEAD'
-        response = urllib.request.urlopen(request)
-        response.read()
-    except urllib.error.HTTPError as e:
-        # 远程文件不存在
-        print(e.code)
-        print(e.read().decode("utf8"))
-        return 0
-    else:
-        fileSize = dict(response.headers).get('Content-Length', 0)
-        return int(fileSize)
-
-
 def download(medium_type, uri, medium_url, target_folder):
-    # global VIDEO_ID
+
     headers = copy.copy(HEADERS)
     file_name = uri
     if medium_type == 'video':
@@ -76,12 +49,6 @@ def download(medium_type, uri, medium_url, target_folder):
     if os.path.isfile(file_path):
         print(file_name + " 已经爬取过了，文件保存在 " + file_path + " 放弃爬取")
         return
-        # 解析medium_url中的 video_id
-        # parses = parse.parse_qs(parse.urlparse(medium_url).query)
-        # VIDEO_ID = parses["video_id"][0]
-        # if VIDEO_ID in VIDEOID_DICT:
-        #     print("重复爬取，放弃"+VIDEO_ID)
-        #     return
 
     print("Downloading %s from %s.\n" % (file_name, medium_url))
     # VIDEOID_DICT[VIDEO_ID] = 1  # 记录已经下载的视频
@@ -289,35 +256,36 @@ class CrawlerScheduler(object):
             print("Cannot decode response data from DESC %s" % aweme['desc'])
             return
 
-    def __download_favorite_media(self, user_id, dytk, hostname, signature, favorite_folder, video_count):
-        if not os.path.exists(favorite_folder):
-            os.makedirs(favorite_folder)
-        favorite_video_url = "https://%s/aweme/v1/aweme/favorite/" % hostname
-        favorite_video_params = {
-            'user_id': str(user_id),
-            'count': '21',
-            'max_cursor': '0',
-            'aid': '1128',
-            '_signature': signature,
-            'dytk': dytk
-        }
-        max_cursor = None
-        while True:
-            if max_cursor:
-                favorite_video_params['max_cursor'] = str(max_cursor)
-            res = requests.get(favorite_video_url,
-                               headers=HEADERS, params=favorite_video_params)
-            contentJson = json.loads(res.content.decode('utf-8'))
-            favorite_list = contentJson.get('aweme_list', [])
-            for aweme in favorite_list:
-                video_count += 1
-                aweme['hostname'] = hostname
-                self._join_download_queue(aweme, favorite_folder)
-            if contentJson.get('has_more'):
-                max_cursor = contentJson.get('max_cursor')
-            else:
-                break
-        return video_count
+    # def __download_favorite_media(self, user_id, dytk, hostname, signature, favorite_folder, video_count):
+    #     if not os.path.exists(favorite_folder):
+    #         os.makedirs(favorite_folder)
+    #     # favorite_video_url = "https://%s/aweme/v1/aweme/favorite/" % hostname
+    #     favorite_video_url = "https://%s/web/api/v2/aweme/like/" % hostname
+    #     favorite_video_params = {
+    #         'user_id': str(user_id),
+    #         'count': '21',
+    #         'max_cursor': '0',
+    #         'aid': '1128',
+    #         '_signature': signature,
+    #         'dytk': dytk
+    #     }
+    #     max_cursor = None
+    #     while True:
+    #         if max_cursor:
+    #             favorite_video_params['max_cursor'] = str(max_cursor)
+    #         res = requests.get(favorite_video_url,
+    #                            headers=HEADERS, params=favorite_video_params)
+    #         contentJson = json.loads(res.content.decode('utf-8'))
+    #         favorite_list = contentJson.get('aweme_list', [])
+    #         for aweme in favorite_list:
+    #             video_count += 1
+    #             aweme['hostname'] = hostname
+    #             self._join_download_queue(aweme, favorite_folder)
+    #         if contentJson.get('has_more'):
+    #             max_cursor = contentJson.get('max_cursor')
+    #         else:
+    #             break
+    #     return video_count
 
     def _download_user_media(self, user_id, dytk, url):
         current_folder = os.getcwd()
@@ -359,10 +327,10 @@ class CrawlerScheduler(object):
                 max_cursor = contentJson.get('max_cursor')
             else:
                 break
-        if True:
-            favorite_folder = target_folder + '/favorite'
-            video_count = self.__download_favorite_media(
-                user_id, dytk, hostname, signature, favorite_folder, video_count)
+        # if True:
+        #     favorite_folder = target_folder + '/favorite'
+        #     video_count = self.__download_favorite_media(
+        #         user_id, dytk, hostname, signature, favorite_folder, video_count)
 
         if video_count == 0:
             print("There's no video in number %s." % user_id)
@@ -504,19 +472,7 @@ def parse_sites(fileName):
             numbers.append(site)
     return numbers
 
-
-# # 定时记录已经下载的文件
-# def saveVideoids():
-#     while True:
-#         print("定时记录已经下载的视频，防止重复爬取")
-#         js = json.dumps(VIDEOID_DICT)
-#         fileObject = open('videoids.json', 'w')
-#         fileObject.write(js)
-#         fileObject.close()
-#         time.sleep(10)
-
-
-download_favorite = True
+download_favorite = False
 
 if __name__ == "__main__":
     content, opts, args = None, None, []
@@ -548,7 +504,5 @@ if __name__ == "__main__":
             if o in ("--favorite"):
                 download_favorite = True
                 break
-
-    # threading.Timer(10, saveVideoids).start()
 
     CrawlerScheduler(content)
