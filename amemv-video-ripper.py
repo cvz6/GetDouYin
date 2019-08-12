@@ -8,8 +8,7 @@ import os
 import re
 import sys
 import time
-import urllib.parse
-import urllib.request
+import urllib
 from threading import Thread
 
 import requests
@@ -75,7 +74,7 @@ def download(medium_type, uri, medium_url, target_folder):
 
     file_path = os.path.join(target_folder, file_name)
     if os.path.isfile(file_path):
-        print(file_name+" 已经爬取过了，文件保存在 "+file_path+" 放弃爬取")
+        print(file_name + " 已经爬取过了，文件保存在 " + file_path + " 放弃爬取")
         return
         # 解析medium_url中的 video_id
         # parses = parse.parse_qs(parse.urlparse(medium_url).query)
@@ -275,8 +274,9 @@ class CrawlerScheduler(object):
                 share_info = aweme.get('share_info', {})
                 url = download_url.format(
                     '&'.join([key + '=' + download_params[key] for key in download_params]))
-                self.queue.put(('video', share_info.get(
-                    'share_desc', uri), url, target_folder))
+                self.queue.put(('video',
+                                uri + "-" + share_info.get('share_desc', uri),
+                                url, target_folder))
             else:
                 if aweme.get('image_infos', None):
                     image = aweme['image_infos']['label_large']
