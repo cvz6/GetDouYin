@@ -176,16 +176,16 @@ class CrawlerScheduler(object):
               (challenges_id, video_count))
         print("\nFinish Downloading All the videos from #%s\n\n" % challenges_id)
 
-    def download_music_videos(self, url):
-        music = re.findall('share/music/(\d+)', url)
-        if not len(music):
-            return
-        musics_id = music[0]
-        video_count = self._download_music_media(musics_id, url)
-        self.queue.join()
-        print("\nAweme music @%s, video number %d\n\n" %
-              (musics_id, video_count))
-        print("\nFinish Downloading All the videos from @%s\n\n" % musics_id)
+    # def download_music_videos(self, url):
+    #     music = re.findall('share/music/(\d+)', url)
+    #     if not len(music):
+    #         return
+    #     musics_id = music[0]
+    #     video_count = self._download_music_media(musics_id, url)
+    #     self.queue.join()
+    #     print("\nAweme music @%s, video number %d\n\n" %
+    #           (musics_id, video_count))
+    #     print("\nFinish Downloading All the videos from @%s\n\n" % musics_id)
 
     def _join_download_queue(self, aweme, target_folder):
         try:
