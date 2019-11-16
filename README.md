@@ -111,5 +111,6 @@ http://v.douyin.com/cMdjU/
 node fuck-byted-acrawler.js 这里是参数：用户id/视频id
 ```
 ## 加群讨论
-qq群317896269
-点击链接加入群聊【数据爬取技术群】：https://jq.qq.com/?_wv=1027&k=5MpObyN
+QQ群：967073790
+点击链接加入群聊【开发者交流群】：https://jq.qq.com/?_wv=1027&k=5l6VTXa
+
